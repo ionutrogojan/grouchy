@@ -24,6 +24,9 @@ use the browser zoom in order to increase the canvas scale;
 
 ## Roadmap
 ```
+v0.1 :
+    1. initial release;
+    
 v0.2 :
     1. custom colour input;
     2. undo / redo;
