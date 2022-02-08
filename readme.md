@@ -20,6 +20,7 @@ use the browser zoom in order to increase the canvas scale;
 2. [ Mouse 1 / Left Button ] = draw;
 3. [ Mouse 2 / Middle Button ] = overlap colour;
 4. [ Mouse 3 / Right Mouse ] = erase;
+5. [ Refrash Page ] = clear canvas;
 ```
 
 ## Roadmap
