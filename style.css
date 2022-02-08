@@ -1,0 +1,233 @@
+:root{
+    /* color palette */
+    --red: #e23255;
+    --purple: #8219be;
+    --blue: #1e50d2;
+    --green: #419619;
+    --yellow: #d2c832;
+    --orange: #c86e0f;
+    --black: #000000;
+    --white: #ffffff;
+
+    --ui-grey: #e5e5e5;
+    --ui-purple: #9370db;
+
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: var(--ui-purple);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-window{
+    position: absolute;
+    z-index: 1;
+    background-color: var(--ui-grey);
+    border: 1px solid var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.start-header{
+    width: 100%;
+    height: 24px;
+    background-color: var(--ui-purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.start-header > p {
+    color: var(--white);
+}
+
+.start-header > button{
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--black);
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-size{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 0 10px;
+    gap: 2px;
+}
+
+.start-size > p{
+    margin: 0;
+}
+
+.purple-text{
+    color: var(--ui-purple);
+}
+
+.canvas-size{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+}
+
+.canvas-size > input{
+    border: 1px solid var(--black);
+    width: 128px;
+}
+
+.canvas-size > input:active, .canvas-size > input:focus{
+    outline: 1px solid var(--ui-purple);
+}
+
+.start-orientation{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    gap: 2px;
+}
+
+.start-orientation > p{
+    margin: 0;
+}
+
+.start-orientation > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.start-orientation > div button{
+    cursor: pointer;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+}
+
+.start-orientation > div button:hover{
+    outline: 1px solid var(--ui-purple);
+}
+
+.start-orientation > div button:first-child{
+    width: 80px;
+    height: 125px;
+}
+
+.start-orientation > div button:last-child{
+    width: 125px;
+    height: 80px;
+}
+
+.start-background{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    gap: 2px;
+}
+
+.start-background > p{
+    margin: 0;
+}
+
+.start-background > .background-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-buttons > button{
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-buttons > button:hover{
+    outline: 1px solid var(--ui-purple);
+}
+
+.background-buttons > button > div{
+    width: 80%;
+    height: 80%;
+    border: 1px solid var(--black);
+    margin: 0;
+}
+
+.background-buttons > button:nth-child(1) > div{
+    background-color: var(--ui-grey);
+}
+
+.background-buttons > button:nth-child(2) > div{
+    background-color: var(--white);
+}
+
+.background-buttons > button:nth-child(3) > div{
+    background-color: var(--black);
+}
+
+.background-buttons > button:nth-child(4) > div{
+    background-color: var(--ui-purple);
+}
+
+.start-create{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 10px 10px;
+}
+
+.start-create > button{
+    height: 24px;
+    width: 50%;
+    background-color: var(--ui-purple);
+    border: 1px solid var(--black);
+    color: var(--white);
+}
+
+#canvas{
+    /* width: 640px;
+    height: 640px; */
+    background-color: white;
+    border: 1px solid black;
+    image-rendering: pixelated;
+}
+
+.colour{
+    width: fit-content;
+    height: 16px;
+    padding: 0;
+    border: 1px solid black;
+    outline: none;
+}
