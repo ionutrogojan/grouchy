@@ -5,75 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Grouchy</title>
+    <title>Grouchy v0.2</title>
 </head>
 <body>
-    <!-- canvas setup -->
-    <!-- <section class="start-window">
-        <div class="start-header">
-            <p>New Canvas</p>
-            <button>x</button>
-        </div>
-        <div class="start-size">
-            <p>
-                <span class="purple-text">-</span>
-                Size
-                <span class="purple-text">- - - -</span>
-            </p>
-            <div class="canvas-size">
-                <label for="width" class="purple-text">Width</label>
-                <input type="number" min="4" max="512" value="16" name="width" id="width_input">
-            </div>
-            <div class="canvas-size">
-                <label for="height" class="purple-text">Height</label>
-                <input type="number" min="4" max="512" value="16" name="height" id="height_input">
-            </div>
-        </div>
-        <div class="start-orientation">
-            <p>
-                <span class="purple-text">-</span>
-                Orientation
-                <span class="purple-text">- - - -</span>
-            </p>
-            <div>
-                <button></button>
-                <button></button>
-            </div>
-        </div>
-        <div class="start-background">
-            <p>
-                <span class="purple-text">-</span>
-                Background
-                <span class="purple-text">- - - -</span>
-            </p>
-            <div class="background-buttons">
-                <button>
-                    <div></div>
-                </button>
-                <button>
-                    <div></div>
-                </button>
-                <button>
-                    <div></div>
-                </button>
-                <button>
-                    <div></div>
-                </button>
-            </div>
-        </div>
-        <div class="start-create">
-            <button>Create</button>
-        </div>
-    </section> -->
-
-    <input type="number" min="1" max="16" value="1" id="pen_size">
-    
+    <div id="cursor">
+        <img id="cursorImg" src="./img/pen.png" alt="">
+    </div>
     <canvas id="canvas"></canvas>
-
-    <!-- <input type="text" maxlength="6" value="000000" id="colour1" class="colour">
-    <input type="text" maxlength="6" value="" id="colour2" class="colour"> -->
-    
-    <!-- <button type="button" id="download">Save</button> -->
+    <button id="save">Save</button>
     <script src="./canvas.js"></script>
+    <script src="./imageSave.js"></script>
 </body>
 </html>
