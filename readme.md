@@ -29,11 +29,12 @@ v0.1a - minor improvements;
 ```ini
 v0.2 :
     1. custom colour input;
-    2. undo / redo;
-    3. save; - in progress;
-    4. tool icons; - done;
-    4. canvas setup;
-    5. swatch list;
+    2. custom pen size;
+    3. undo / redo;
+    4. save; - in progress;
+    5. tool icons; - done;
+    6. canvas setup;
+    7. swatch list;
 ```
 
 ## Release Notes
