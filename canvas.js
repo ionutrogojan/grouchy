@@ -2,8 +2,8 @@ let penSize = 1;
 
 let zoom = 10;
 
-let canvasWidth = 32;
-let canvasHeight = 32;
+let canvasWidth = 16;
+let canvasHeight = 16;
 
 let drawing = false;
 let bound;
@@ -14,6 +14,15 @@ let r = 0;
 let g = 0;
 let b = 0;
 let a = 0;
+
+// zoom
+const zoomMinus = document.querySelector('#zoomMinus');
+const zoomPlus = document.querySelector('#zoomPlus');
+const zoomText = document.querySelector('#zoomText');
+
+// coordinates
+const cursorXText = document.querySelector('#cursorXText');
+const cursorYText = document.querySelector('#cursorYText');
 
 // custom cursor
 const cursor = document.querySelector('#cursor');
@@ -33,6 +42,28 @@ canvas.height = canvasHeight;
 // canvas zoom
 canvas.style.width = canvasWidth * zoom + 'px';
 canvas.style.height = canvasHeight * zoom + 'px';
+
+// FIXME: not happy with the use of separate functions for - and +. Find a fix.
+function plusZoom(){
+    if(zoom >= 100) return;
+    
+    zoom += 10;
+    zoomText.innerText = zoom + '%';
+    // TODO: make this a function and call that instead of re-writing it every time. Wrap everything in a 'load' listener for initial setup.
+    canvas.style.width = canvasWidth * zoom + 'px';
+    canvas.style.height = canvasHeight * zoom + 'px';
+    setBounds();
+}
+
+function minusZoom(){
+    if(zoom <= 10) return;
+    
+    zoom -= 10;
+    zoomText.innerText = zoom + '%';
+    canvas.style.width = canvasWidth * zoom + 'px';
+    canvas.style.height = canvasHeight * zoom + 'px';
+    setBounds();
+}
 
 function updatePen(){
     // set pen size
@@ -70,9 +101,13 @@ function start(event){
         // middle mouse button
         case 1:
             // draw colour 2
-            red = 230;
-            green = 20;
-            blue = 60;
+            // red = 230;
+            // green = 20;
+            // blue = 60;
+            // alpha = 255;
+            red = 255;
+            green = 255;
+            blue = 255;
             alpha = 255;
             break;
         // right mouse button
@@ -96,8 +131,12 @@ function end(){
 
 function draw(event){
 
-    let canvasX = parseInt((event.clientX - bound.left - canvas.clientLeft) / 10);
-    let canvasY = parseInt((event.clientY - bound.top - canvas.clientTop) / 10);
+    let canvasX = parseInt((event.clientX - bound.left - canvas.clientLeft) / zoom);
+    let canvasY = parseInt((event.clientY - bound.top - canvas.clientTop) / zoom);
+
+    // show cursor coordinates
+    cursorXText.innerText = canvasX + ' px';
+    cursorYText.innerText = canvasY + ' px';
     
     // FIXME: better align the pen
     if(penSize % 2 == 0){
@@ -133,3 +172,7 @@ canvas.addEventListener('touchmove', draw);
 
 // canvas.addEventListener('mouseenter', customMouse);
 // canvas.addEventListener('mouseout', customMouse);
+
+// zoom events
+zoomMinus.addEventListener('click', minusZoom);
+zoomPlus.addEventListener('click', plusZoom);

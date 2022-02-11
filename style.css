@@ -1,7 +1,13 @@
 :root{
     --white: #ffffff;
+    --grey: #cccccc;
     --black: #000000;
     --purple: #9370db;
+    --dark-purple: #783CBD;
+
+    font-size: 16px;
+    font-family: monospace;
+    color: var(--white);
 }
 
 body{
@@ -10,17 +16,20 @@ body{
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 #canvas{
     cursor: none;
-    background-color: var(--white);
+    background-color: var(--grey);
     border: 1px solid var(--black);
-    width: 640px;
-    height: 640px;
+    /* width: 640px; */
+    /* height: 640px; */
     image-rendering: pixelated;
+    flex: 0;
 }
 
 #cursor{
@@ -36,4 +45,61 @@ body{
     width: 100%;
     height: 100%;
     image-rendering: pixelated;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+}
+
+.zoom, .cursor-position, .tool-name, .save-progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.zoom > div, .cursor-position > div, .tool-name > div, .save-progress > div{
+    width: 24px;
+    height: 24px;
+    background-color: var(--dark-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div > img{
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+}
+
+.zoom > button{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-color: var(--purple);
+    border: 1px solid var(--dark-purple);
+    color: var(--white);
+}
+
+.zoom > p, .cursor-position > p, .tool-name > p{
+    width: 80px;
+    height: 24px;
+    background-color: var(--dark-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-progress > button{
+    cursor: pointer;
+    width: 80px;
+    height: 24px;
+    background-color: var(--purple);
+    border: 1px solid var(--dark-purple);
+    color: var(--white);
 }

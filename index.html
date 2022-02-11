@@ -12,7 +12,31 @@
         <img id="cursorImg" src="./img/pen.png" alt="">
     </div>
     <canvas id="canvas"></canvas>
-    <button id="save">Save</button>
+    <section class="footer">
+        <div class="zoom">
+            <div>
+                <img src="./img/loupe.png"></img>
+            </div>
+            <button id="zoomMinus">-</button>
+            <p id="zoomText">10%</p>
+            <button id="zoomPlus">+</button>
+        </div>
+        <div class="cursor-position">
+            <div>
+                <img src="./img/coordonate.png" alt="">
+            </div>
+            <p id="cursorXText">0 px</p>
+            <p id="cursorYText">0 px</p>
+        </div>
+        <div class="tool-name">
+            <div id="toolKey">B</div>
+            <p id="toolName">Pen</p>
+        </div>
+        <div class="save-progress">
+            <div id="progressIcon">?</div>
+            <button id="save">Save</button>
+        </div>
+    </section>
     <script src="./canvas.js"></script>
     <script src="./imageSave.js"></script>
 </body>
