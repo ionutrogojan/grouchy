@@ -5,39 +5,130 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Grouchy v0.1b</title>
+    <title>Grouchy v0.1c</title>
 </head>
 <body>
-    <div id="cursor">
-        <img id="cursorImg" src="./img/pen.png" alt="">
-    </div>
-    <canvas id="canvas"></canvas>
-    <section class="footer">
-        <div class="zoom">
-            <div>
-                <img src="./img/loupe.png"></img>
+    <section class="top-bar">
+        <div class="top-button" id="new_button">
+            <p>New</p> <!-- file -->
+        </div>
+        <div class="top-button">
+            <p>Edit</p>
+        </div>
+        <div class="top-button">
+            <p>Help</p>
+        </div>
+
+        <div class="pen-size">
+            <input type="text" placeholder="1 px" value="1" id="pen_size">
+        </div>
+
+        <section id="canvas_menu_wrapper">
+            <section class="canvas-menu">
+                <p>New Canvas</p>
+                <section class="canvas-size">
+                    <p>
+                        <span class="purple-text">-</span>
+                        Size
+                        <span class="purple-text">-----</span>
+                    </p>
+                    <section>
+                        <div>
+                            <label for="width-input" class="purple-text">Width</label>
+                            <input type="text" maxlength="3" name="width-input" id="canvas_width_input" value="16">
+                        </div>
+                        <div>
+                            <label for="height-input" class="purple-text">Height</label>
+                            <input type="text" maxlength="3" name="height-input" id="canvas_height_input" value="16">
+                        </div>
+                    </section>
+                </section>
+                <section class="canvas-orientation">
+                    <p>
+                        <span class="purple-text">-</span>
+                        Orientation
+                        <span class="purple-text">-----</span>
+                    </p>
+                    <div>
+                        <button></button>
+                        <button></button>
+                    </div>
+                </section>
+                <section class="canvas-background">
+                    <p>
+                        <span class="purple-text">-</span>
+                        Background
+                        <span class="purple-text">-----</span>
+                    </p>
+                    <div>
+                        <button>
+                            <div></div>
+                        </button>
+                        <button>
+                            <div></div>
+                        </button>
+                        <button>
+                            <div></div>
+                        </button>
+                    </div>
+                </section>
+                <section class="canvas-create">
+                    <button id="create_canvas">Create</button>
+                </section>
+            </section>
+        </section>
+
+    </section>
+    <section class="left-bar">
+        <button class="left-button">
+            <img src="./img/buttons/penButton.png" alt="">
+        </button>
+        <button class="left-button">
+            <img src="./img/buttons/eraserButton.png" alt="">
+        </button>
+        <button class="left-button">
+            <img src="./img/buttons/penButton.png" alt="">
+        </button>
+    </section>
+    <section class="canvas-area">
+        <div id="cursor">
+            <img id="cursorImg" src="./img/cursor/pen.png" alt="">
+        </div>
+        <canvas id="canvas"></canvas>
+    </section>
+    <section class="right-bar">
+        <!-- right -->
+    </section>
+
+    <!-- info panel -->
+    <section class="bottom-bar">
+        <div class="bottom-wrapper">
+            <div class="bottom-button">
+                <img src="./img/symbols/loupe.png" alt="zoom">
+                <button id="zoom_minus">-</button>
+                <p id="zoom_value">10%</p>
+                <button id="zoom_plus">+</button>
             </div>
-            <button id="zoomMinus">-</button>
-            <p id="zoomText">10%</p>
-            <button id="zoomPlus">+</button>
-        </div>
-        <div class="cursor-position">
-            <div>
-                <img src="./img/coordonate.png" alt="">
+            <div class="bottom-button">
+                <img src="./img/symbols/coordonate.png" alt="coord">
+                <p id="coord_x">0 px</p>
+                <p id="coord_y">0 px</p>
             </div>
-            <p id="cursorXText">0 px</p>
-            <p id="cursorYText">0 px</p>
+            <div class="bottom-button">
+                <p class="bottom-button-small" id="tool_key">B</p>
+                <p id="tool_name">Pen</p>
+            </div>
         </div>
-        <div class="tool-name">
-            <div id="toolKey">B</div>
-            <p id="toolName">Pen</p>
-        </div>
-        <div class="save-progress">
-            <div id="progressIcon">?</div>
+        <div class="bottom-button">
+            <div id="bottom-button-small">?</div>
             <button id="save">Save</button>
         </div>
     </section>
-    <script src="./canvas.js"></script>
-    <script src="./imageSave.js"></script>
+    
+    <script src="./script/canvas.js"></script>
+    <script src="./script/menu.js"></script>
+    <script src="./script/toolbar.js"></script>
+    <script src="./script/colour.js"></script>
+    <script src="./script/infopanel.js"></script>
 </body>
 </html>

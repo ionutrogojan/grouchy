@@ -1,35 +1,275 @@
-:root{
-    --white: #ffffff;
-    --grey: #cccccc;
-    --black: #000000;
-    --purple: #9370db;
-    --dark-purple: #783CBD;
+@import url('http://fonts.cdnfonts.com/css/thegoodmonolith');
 
+:root{
+    --canvas-bg: #463C46;
+    --ui-bg: #8C96A0;
+
+    font-family: 'TheGoodMonolith', sans-serif, monospace;
+    color: black;
+    font-weight: bold;
     font-size: 16px;
-    font-family: monospace;
-    color: var(--white);
+    text-rendering: optimizeLegibility;
+}
+
+.purple-text{
+    color: var(--canvas-bg);
+}
+
+* p{
+    margin: 0;
+    padding: 0;
+}
+
+button, input{
+    font-family: 'TheGoodMonolith', sans-serif, monospace;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 body{
-    background-color: var(--purple);
     margin: 0;
+    padding: 0;
     width: 100vw;
     height: 100vh;
+    background-color: var(--ui-bg);
+    display: grid;
+    grid-template-columns: 60px auto 60px;
+    grid-template-rows: 60px auto 60px;
+}
+
+.top-bar{
+    /* background-color: red; */
+    min-width: 100%;
+    min-height: 60px;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+}
+
+.top-button{
+    cursor: pointer;
+    min-height: 40px;
+    height: 40px;
+    padding: 0 20px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pen-size{
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pen-size > input{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#canvas_menu_wrapper{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-menu{
+    background-color: var(--ui-bg);
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+    width: fit-content;
+    z-index: 1;
+}
+
+.canvas-menu > p{
+    /* max-width: fit-content; */
+    background-color: var(--canvas-bg);
+    margin: 0;
+    color: white;
+    padding: 4px 10px;
+}
+
+.canvas-menu > section{
+    width: auto;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.canvas-size, .canvas-orientation, .canvas-background{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    /* width: 100%; */
+}
+
+.canvas-size > section{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.canvas-orientation > div{
+    width: auto;
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
+.canvas-orientation > div button{
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
+    /* outline: 1px solid var(--canvas-bg); */
+}
+
+.canvas-orientation > div button:nth-child(1){
+    width: 100px;
+    height: 125px;
+}
+
+.canvas-orientation > div button:nth-child(2){
+    width: 125px;
+    height: 100px;
+}
+
+.canvas-background > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.canvas-background > div button{
+    cursor: pointer;
+    width: 64px;
+    height: 64px;
+    background-color: white;
+    border: 1px solid black;
+    /* outline: 1px solid var(--canvas-bg); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-background > div button > div{
+    width: 48px;
+    height: 48px;
+    background-color: red;
+}
+
+.canvas-create{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 10px !important;
+}
+
+.canvas-create > button{
+    cursor: pointer;
+    background-color: var(--canvas-bg);
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+    padding: 4px 40px;
+}
+
+.left-bar{
+    /* background-color: green; */
+    min-width: 60px;
+    width: 100%;
+    height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+}
+
+.left-button{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    outline: 0;
+    background-color: white;
+    padding: 0;
+}
+
+.left-button > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.canvas-area{
+    background-color: var(--canvas-bg);
+    width: 100%;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    overflow: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #canvas{
     cursor: none;
-    background-color: var(--grey);
-    border: 1px solid var(--black);
-    /* width: 640px; */
-    /* height: 640px; */
+    background-origin: border-box;
+    background-repeat: repeat;
+    background-image: url(./img/canvas/canvasBackground.png);
+    background-position: left top;
+    background-size: 160px;
+    background-color: white;
+    border: 1px solid black;
     image-rendering: pixelated;
-    flex: 0;
 }
 
 #cursor{
@@ -47,59 +287,87 @@ body{
     image-rendering: pixelated;
 }
 
-.footer{
+.right-bar{
+    /* background-color: gold; */
+    min-width: 60px;
+    width: 100%;
+    height: 100%;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
-    gap: 10px;
-    height: 24px;
+    gap: 4px;
 }
 
-.zoom, .cursor-position, .tool-name, .save-progress{
+.bottom-bar{
+    /* background-color: blue; */
+    min-width: 100%;
+    min-height: 60px;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-wrapper{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.bottom-button{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
 }
 
-.zoom > div, .cursor-position > div, .tool-name > div, .save-progress > div{
-    width: 24px;
-    height: 24px;
-    background-color: var(--dark-purple);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div > img{
-    width: 16px;
-    height: 16px;
+.bottom-button > img{
+    width: 40px;
+    height: 40px;
     image-rendering: pixelated;
 }
 
-.zoom > button{
+.bottom-button > button{
     cursor: pointer;
-    width: 24px;
-    height: 24px;
-    background-color: var(--purple);
-    border: 1px solid var(--dark-purple);
-    color: var(--white);
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0;
+    background-color: white;
 }
 
-.zoom > p, .cursor-position > p, .tool-name > p{
-    width: 80px;
-    height: 24px;
-    background-color: var(--dark-purple);
+.bottom-button > p{
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    margin: 0;
+    padding: 0 30px;
+    /* min-width: 80px; */
 }
 
-.save-progress > button{
-    cursor: pointer;
+.bottom-button-small{
+    max-width: 40px;
+    width: 40px;
+    height: 40px;
+    padding: 0 !important;
+}
+
+#save{
+    height: 40px;
     width: 80px;
-    height: 24px;
-    background-color: var(--purple);
-    border: 1px solid var(--dark-purple);
-    color: var(--white);
 }
