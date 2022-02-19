@@ -1,18 +1,40 @@
 @import url('http://fonts.cdnfonts.com/css/thegoodmonolith');
 
 :root{
-    --canvas-bg: #463C46;
-    --ui-bg: #8C96A0;
-
+    --black: #000000;
+    --white: #ffffff;
+    --grey1: #8C96A0;
+    --grey2: #aaaaaa;
+    --purple: #463c46;
+    --gold: #f2a60d;
     font-family: 'TheGoodMonolith', sans-serif, monospace;
-    color: black;
+    color: var(--black);
     font-weight: bold;
     font-size: 16px;
     text-rendering: optimizeLegibility;
+    cursor: none;
+}
+
+#custom_cursor{
+    display: none;
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    width: 32px;
+    height: 32px;
+    background-image: url(./img/cursor/pen.png);
+    background-size: 32px;
+    image-rendering: pixelated;
+}
+
+#cursor > img{
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
 }
 
 .purple-text{
-    color: var(--canvas-bg);
+    color: var(--purple);
 }
 
 * p{
@@ -24,6 +46,8 @@ button, input{
     font-family: 'TheGoodMonolith', sans-serif, monospace;
     font-weight: bold;
     font-size: 16px;
+    border: 0;
+    cursor: none;
 }
 
 body{
@@ -31,22 +55,25 @@ body{
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--ui-bg);
+    overflow: hidden;
+    background-color: var(--grey1);
     display: grid;
-    grid-template-columns: 60px auto 60px;
-    grid-template-rows: 60px auto 60px;
+    grid-template-columns: 48px auto 240px;
+    grid-template-rows: 48px auto 48px;
+}
+
+.inactive{
+    color: var(--white);
 }
 
 .top-bar{
-    /* background-color: red; */
     min-width: 100%;
-    min-height: 60px;
+    min-height: 48px;
     height: 100%;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-
     display: flex;
     justify-content: start;
     align-items: center;
@@ -54,23 +81,32 @@ body{
 }
 
 .top-button{
-    cursor: pointer;
-    min-height: 40px;
-    height: 40px;
-    padding: 0 20px;
-    background-color: white;
+    background-image: url(./img/ui/buttonbox.png);
+    background-size: 80px 30px;
+    image-rendering: pixelated;
+    height: 30px;
+    width: 80px;
+    background-color: var(--white);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.top-button > p{
+    padding-bottom: 6px;
+}
+
 .pen-size{
-    width: 80px;
-    height: 40px;
+    width: 40px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(./img/ui/mediuminputbox.png);
+    background-size: 40px 30px;
+    image-rendering: pixelated;
+    background-position: left top;
 }
 
 .pen-size > input{
@@ -78,14 +114,14 @@ body{
     height: 100%;
     padding: 0;
     margin: 0;
-    border: 1px solid black;
+    background-color: transparent;
+    border: 0;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
 }
 
 #canvas_menu_wrapper{
-    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
@@ -98,128 +134,150 @@ body{
 }
 
 .canvas-menu{
-    background-color: var(--ui-bg);
-    border: 1px solid white;
+    background-color: var(--grey1);
+    border: 1px solid var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     gap: 10px;
-    width: fit-content;
+    width: 272px;
+    height: auto;
     z-index: 1;
 }
 
-.canvas-menu > p{
-    /* max-width: fit-content; */
-    background-color: var(--canvas-bg);
+.canvas-menu-header{
+    width: calc(100% - 20px);
+    height: 30px;
+    background-color: var(--purple);
     margin: 0;
-    color: white;
-    padding: 4px 10px;
+    color: var(--white);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
 }
 
-.canvas-menu > section{
-    width: auto;
+.canvas-menu-size, .canvas-menu-orientation, .canvas-menu-background{
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.canvas-menu-size > p, .canvas-menu-orientation > p, .canvas-menu-background > p{
+    width: calc(100% - 20px);
+    height: 20px;
     margin: 0;
     padding: 0 10px;
 }
 
-.canvas-size, .canvas-orientation, .canvas-background{
-    /* background-color: red; */
+.canvas-menu-size > section{
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 4px;
-    /* width: 100%; */
-}
-
-.canvas-size > section{
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     gap: 4px;
 }
 
-.canvas-orientation > div{
-    width: auto;
+.canvas-menu-size > section input{
+    background-image: url(./img/ui/canvasinputbox.png);
+    background-size: 80px 20px;
+    image-rendering: pixelated;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.canvas-menu-orientation > div{
+    width: 100%;
+    height: 125px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.canvas-orientation > div button{
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid black;
-    /* outline: 1px solid var(--canvas-bg); */
+.canvas-menu-orientation > div button{
+    background-color: var(--white);
+    border: 1px solid var(--black);
 }
 
-.canvas-orientation > div button:nth-child(1){
+.canvas-menu-orientation > div button:nth-child(1){
     width: 100px;
     height: 125px;
 }
 
-.canvas-orientation > div button:nth-child(2){
+.canvas-menu-orientation > div button:nth-child(2){
     width: 125px;
     height: 100px;
 }
 
-.canvas-background > div{
+.canvas-menu-background > div{
     width: 100%;
+    height: 64px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.canvas-background > div button{
-    cursor: pointer;
+.canvas-menu-background > div button{
     width: 64px;
     height: 64px;
-    background-color: white;
-    border: 1px solid black;
-    /* outline: 1px solid var(--canvas-bg); */
+    background-color: var(--white);
+    border: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: 64px;
+    image-rendering: pixelated;
 }
 
-.canvas-background > div button > div{
-    width: 48px;
-    height: 48px;
-    background-color: red;
+.canvas-menu-background > div button:nth-child(1){
+    background-image: url(./img/canvas/canvasmenutransparent.png);
 }
 
-.canvas-create{
-    width: 100%;
+.canvas-menu-background > div button:nth-child(2){
+    background-image: url(./img/canvas/canvasmenublack.png);
+}
+
+.canvas-menu-background > div button:nth-child(3){
+    background-image: url(./img/canvas/canvasmenuwhite.png);
+}
+
+.canvas-menu-create{
+    width: calc(100% - 20px);
+    height: 30px;
+    margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding-bottom: 10px !important;
+    padding-bottom: 10px;
 }
 
-.canvas-create > button{
-    cursor: pointer;
-    background-color: var(--canvas-bg);
-    border: 1px solid black;
-    color: white;
+.canvas-menu-create > button{
+    background-color: var(--purple);
+    color: var(--white);
+    width: 80px;
+    height: 30px;
     font-weight: bold;
-    padding: 4px 40px;
 }
 
 .left-bar{
-    /* background-color: green; */
-    min-width: 60px;
+    min-width: 48px;
     width: 100%;
     height: 100%;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -228,75 +286,63 @@ body{
 }
 
 .left-button{
-    cursor: pointer;
     width: 40px;
     height: 40px;
     border: 0;
     outline: 0;
-    background-color: white;
     padding: 0;
-}
-
-.left-button > img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    background-color: var(--white);
+    background-size: 40px;
     image-rendering: pixelated;
 }
 
+/* TOOL BUTTONS --> */
+#pen_button{
+    background-image: url(./img/buttons/penButton.png);
+}
+
+#eraser_button{
+    background-image: url(./img/buttons/eraserButton.png);
+}
+
+#eyedropper_button{
+    background-image: url(./img/buttons/eyedropperButton.png);
+}
+/* TOOL BUTTONS <-- */
+
 .canvas-area{
-    background-color: var(--canvas-bg);
+    background-color: var(--purple);
     width: 100%;
     height: 100%;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-
     overflow: auto;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #canvas{
-    cursor: none;
     background-origin: border-box;
     background-repeat: repeat;
     background-image: url(./img/canvas/canvasBackground.png);
     background-position: left top;
     background-size: 160px;
-    background-color: white;
-    border: 1px solid black;
-    image-rendering: pixelated;
-}
-
-#cursor{
-    display: none;
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-    width: 30px;
-    height: 30px;
-}
-
-#cursor > img{
-    width: 100%;
-    height: 100%;
+    background-color: var(--white);
+    border: 1px solid var(--black);
     image-rendering: pixelated;
 }
 
 .right-bar{
-    /* background-color: gold; */
-    min-width: 60px;
+    min-width: 240px;
     width: 100%;
     height: 100%;
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -304,22 +350,65 @@ body{
     gap: 4px;
 }
 
-.bottom-bar{
-    /* background-color: blue; */
-    min-width: 100%;
-    min-height: 60px;
+.right-bar > section{
+    width: 232px;
     height: 100%;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+
+.pen-colour{
+    width: 228px;
+    height: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.bottom-wrapper{
+.pen-colour button{
+    background-image: url(./img/ui/maincolourbox.png);
+    background-size: 112px 32px;
+    image-rendering: pixelated;
+    width: 112px;
+    height: 32px;
+}
+
+.swatch-list{
+    background-color: var(--purple);
+    width: 222px;
+    height: auto;
+    height: 100%;
+    display: grid;
+    justify-content: flex-start;
+    grid-template-columns: repeat(6, 32px);
+    grid-row: auto;
+    gap: 4px;
+    padding: 4px;
+}
+
+.swatch-list button{
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--black);
+}
+
+.bottom-bar{
+    min-width: 100%;
+    min-height: 48px;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-left{
     display: flex;
     justify-content: start;
     align-items: center;
@@ -334,40 +423,66 @@ body{
 }
 
 .bottom-button > img{
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     image-rendering: pixelated;
 }
 
-.bottom-button > button{
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: bold;
-    border: 0;
-    background-color: white;
-}
-
-.bottom-button > p{
-    height: 40px;
+.textbox{
+    image-rendering: pixelated;
+    background-color: var(--grey2);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
     margin: 0;
-    padding: 0 30px;
-    /* min-width: 80px; */
 }
 
-.bottom-button-small{
-    max-width: 40px;
+.large-textbox{
+    background-image: url(./img/ui/textbox.png);
+    background-size: 80px 30px;
+    width: 80px;
+    height: 30px;
+}
+
+.medium-textbox{
+    background-image: url(./img/ui/mediumtextbox.png);
+    background-size: 40px 30px;
     width: 40px;
-    height: 40px;
-    padding: 0 !important;
+    height: 30px;
+}
+
+.small-textbox{
+    background-image: url(./img/ui/smalltextbox.png);
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+}
+
+#zoom_plus, #zoom_minus{
+    width: 20px;
+    height: 20px;
+    background-color: #aaaaaa;
+    border: 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    image-rendering: pixelated;
+}
+
+#zoom_plus{
+    background-image: url(./img/symbols/zoom_plus.png);
+}
+
+#zoom_minus{
+    background-image: url(./img/symbols/zoom_minus.png);
 }
 
 #save{
-    height: 40px;
+    background-color: #aaaaaa;
+    background-image: url(./img/ui/buttonbox.png);
+    background-size: 80px 30px;
+    image-rendering: pixelated;
+    height: 30px;
     width: 80px;
+    border: 0;
+    padding-bottom: 6px;
 }
