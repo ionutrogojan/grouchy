@@ -21,9 +21,10 @@ v0.1b - even more minor improvements;
 ```ini
 0. [ New ] = canvas setup;
 1. [ Input ] = pen size;
-2. [ Mouse 1 / Left Button ] = draw colour 1;
-3. [ Mouse 2 / Middle Button ] = draw colour 2;
-4. [ Mouse 3 / Right Mouse ] = erase;
+2. [ Mouse 0 / Left Button / B ] = draw colour 1;
+3. [ Mouse 1 / Right Mouse / E ] = erase;
+4. [ Mouse 2 / Middle Button / B ] = draw colour 2;
+5. [ I ] = eyedropper;
 5. [ - / + ] = canvas zoom;
 6. [ Save ] = save image as png;
 ```
@@ -31,13 +32,13 @@ v0.1b - even more minor improvements;
 ## Roadmap
 ```ini
 v0.2 :
-    1. custom colour input;
+    1. custom colour input; - in progress;
     2. custom pen size; - done;
     3. undo / redo;
     4. save; - in progress;
     5. tool icons; - done;
     6. canvas setup; - in progress;
-    7. swatch list;
+    7. swatch list; - in progress;
 ```
 
 ## Release Notes
@@ -59,6 +60,12 @@ v0.1c :
     4. Canvas background set to checkboard by default; - functional but not perfect.
     5. Fixed switching between colours; - no more clicking twice to get the other colour.
     6. Added info panel tool indicator, key shortcut and name; - in progress;
+v0.1d:
+    1. Added swatch list; - currently only one available list, more will be added.
+    2. Colour selection; - left click and right click to set primary and secondary colour.
+    3. Small Ui changes; - more pixelated to maintain emersion;
+    4. Tool selection;  - click the icons in the left toolbar to select.
+    5. Keyboard Shortcuts; - you can also use shortcuts to select tools.
 ```
 
 ## Known Issues
@@ -67,3 +74,4 @@ v0.1c :
 2. Pen size not acurrate to input; - fixed;
 3. Pen Overlap and Eraser some time creates new line; - fixed;
 4. Pen position to pixel position missalignment; - fixed;
+```
