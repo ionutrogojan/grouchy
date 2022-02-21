@@ -1,31 +1,10 @@
-let tool = 0;
-
-const pen = document.querySelector('#pen_button');
-const eraser = document.querySelector('#eraser_button');
-const eyedropper = document.querySelector('#eyedropper_button');
-
-const customCursor = document.querySelector('#custom_cursor');
-
 // toolbar buttons update
-function updateTool(toolNumber){
-    tool = toolNumber;
-    pen.style.backgroundImage = 'url(./img/buttons/penButton.png)';
-    eyedropper.style.backgroundImage = 'url(./img/buttons/eyedropperButton.png)';
-    eraser.style.backgroundImage = 'url(./img/buttons/eraserButton.png)';
-    switch(tool){
-        case 0:
-            customCursor.style.backgroundImage = 'url(./img/cursor/pen.png)';
-            pen.style.backgroundImage = 'url(./img/buttons/penButtonActive.png)';
-            break;
-        case 1:
-            customCursor.style.backgroundImage = 'url(./img/cursor/eraser.png)';
-            eraser.style.backgroundImage = 'url(./img/buttons/eraserButtonActive.png)';
-        break;
-        case 2:
-            customCursor.style.backgroundImage = 'url(./img/cursor/eyedropper.png)';
-            eyedropper.style.backgroundImage = 'url(./img/buttons/eyedropperButtonActive.png)';
-        break;
+function updateTool(tool){
+    for(let i = 0; i < tools.length; i++){
+        tools[i].style.backgroundImage = toolButtonImg[i];
     }
+    tools[tool].style.backgroundImage = toolButtonActiveImg[tool];
+    customCursor.style.backgroundImage = cursorImg[tool];
 }
 
 // custom cursor position
@@ -40,77 +19,98 @@ document.addEventListener('mouseout', () => {
 });
 
 // toolbar buttons
-pen.addEventListener('click', () => {
-    updateTool(0);
+penButton.addEventListener('click', () => {
+    tool = 0;
+    updateTool(tool);
 });
 
-eraser.addEventListener('click', () => {
-    updateTool(1);
+eraserButton.addEventListener('click', () => {
+    tool = 1;
+    updateTool(tool);
 });
 
-eyedropper.addEventListener('click', () => {
-    updateTool(2);
+eyeButton.addEventListener('click', () => {
+    tool = 2;
+    updateTool(tool);
 });
 
-// keyboard shortcuts
 document.addEventListener('keydown', (event) => {
-    // lower case if CAPS lock is active
-    switch(event.key.toLowerCase())
-    {
+    quickKey = event.key.toLocaleLowerCase();
+    switch(quickKey){
         case 'b':
-            updateTool(0);
+            tool = 0;
+            updateTool(tool);
         break;
         case 'e':
-            updateTool(1);
+            tool = 1;
+            updateTool(tool);
         break;
         case 'i':
-            updateTool(2);
+            tool = 2;
+            updateTool(tool);
+        break;
+        case 'alt':
+            event.preventDefault();
+            quickTool = 2;
+            updateTool(quickTool);
         break;
     }
+    console.log(quickKey);
 });
 
-// tool icon + effect
+document.addEventListener('keyup', () => {
+    quickKey = null;
+    quickTool = null;
+    updateTool(tool);
+    console.log(quickKey);
+});
+
+// tool icon + action
 canvas.addEventListener('mousedown', (event) => {
+    let priorityAction;
     switch(event.button){
         case 0:
-            // console.log(tool);
-            switch(tool){
+        case 2:
+            // check if there is no shortcut active
+            if(quickKey == null){
+                priorityAction = tool;
+            }
+            else{
+                priorityAction = quickTool;
+            }
+            // perform priority action
+            switch(priorityAction){
                 case 0:
-                    customCursor.style.backgroundImage = 'url(./img/cursor/pen.png)';
                     updatePen(event.button);
+                    draw(event);
                 break;
                 case 1:
-                    customCursor.style.backgroundImage = 'url(./img/cursor/eraser.png)';
-                    updatePen(1);
+                    updatePen(priorityAction);
+                    draw(event);
                 break;
                 case 2:
-                    customCursor.style.backgroundImage = 'url(./img/cursor/eyedropper.png)';
+                    // don't draw while picking colour
+                    end();
+                    pick(event);
                 break;
             }
+            updateTool(priorityAction);
         break;
         case 1:
-            customCursor.style.backgroundImage = 'url(./img/cursor/eraser.png)';
             updatePen(event.button);
-        break;
-        case 2:
-            customCursor.style.backgroundImage = 'url(./img/cursor/pen.png)';
-            updatePen(event.button);
+            updateTool(event.button);
+            draw(event);
         break;
     }
-    draw(event);
 });
 
 // reset tool icon
 canvas.addEventListener('mouseup', () => {
-    switch(tool){
-        case 0:
-            customCursor.style.backgroundImage = 'url(./img/cursor/pen.png)';
-        break;
-        case 1:
-            customCursor.style.backgroundImage = 'url(./img/cursor/eraser.png)';
-        break;
-        case 2:
-            customCursor.style.backgroundImage = 'url(./img/cursor/eyedropper.png)';
-        break;
-    }
+    updateTool(tool);
+});
+
+window.addEventListener('load', () => {
+    updateTool(tool);
+    quickKey = null;
+    quickTool = null;
 });

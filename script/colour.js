@@ -1,16 +1,3 @@
-const s1Colour = { red: 0, green: 0, blue: 0, alpha: 255 };
-const s2Colour = { red: 170, green: 170, blue: 170, alpha: 255 };
-const s3Colour = { red: 255, green: 255, blue: 255, alpha: 255 };
-const s4Colour = { red: 242, green: 166, blue: 13, alpha: 255 };
-
-const colour1 = document.querySelector('#colour1');
-const colour2 = document.querySelector('#colour2');
-
-const s1 = document.querySelector('#s1');
-const s2 = document.querySelector('#s2');
-const s3 = document.querySelector('#s3');
-const s4 = document.querySelector('#s4');
-
 s1.oncontextmenu = () => false;
 s2.oncontextmenu = () => false;
 s3.oncontextmenu = () => false;

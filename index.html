@@ -4,21 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/symbols/grouchy.png" type="image/png">
     <link rel="stylesheet" href="./style.css">
-    <title>Grouchy v0.1d</title>
+    <title>Grouchy v0.1e</title>
 </head>
 <body>
     <div id="custom_cursor"></div>
     <!-- menu -> -->
     <section class="top-bar">
-        <div class="top-button" id="new_button">
+        <div class="top-button" id="file_button">
             <p>File</p>
+            <!-- dropdown -->
+            <section id="file_dropdown" class="dropdown">
+                <div id="file_new" class="dropdown-button">
+                    <p>New...</p><span>N</span>
+                </div>
+                <div class="dropdown-button-separator"></div>
+                <div id="file_open" class="dropdown-button">
+                    <p>Open...</p><span>O</span>
+                </div>
+                <div id="file_recent" class="dropdown-button">
+                    <p>Open Recent</p><span>></span>
+                </div>
+                <div class="dropdown-button-separator"></div>
+                <div id="file_save" class="dropdown-button">
+                    <p>Save</p><span>S</span>
+                </div>
+                <div id="file_reload" class="dropdown-button">
+                    <p>Refresh</p><span>R</span>
+                </div>
+            </section>
         </div>
         <div class="top-button inactive">
             <p>Edit</p>
+            <!-- dropdown -->
+            <!-- <section class="dropdown">
+                <p>Undo</p>
+                <p>Redo</p>
+                <p>Cut</p>
+                <p>Copy</p>
+                <p>Paste</p>
+                <p>Delete</p>
+                <p>Preferences</p>
+            </section> -->
+        </div>
+        <div class="top-button inactive">
+            <p>View</p>
+            <!-- dropdown -->
+            <!-- <section class="dropdown">
+                <p>Guides</p>
+                <p>FullScreen</p>
+            </section> -->
         </div>
         <div class="top-button inactive">
             <p>Help</p>
+            <!-- <section class="dropdown">
+                <p>Documentation</p>
+                <p>Release Notes</p>
+                <p>About</p>
+            </section> -->
         </div>
         <div class="pen-size">
             <input type="text" placeholder="1 px" value="1" id="pen_size">
@@ -81,7 +125,7 @@
     </section>
     <!-- toolbar <- -->
     <!-- canvas -> -->
-    <section class="canvas-area">
+    <section id="canvas_area" class="canvas-area">
         <canvas id="canvas"></canvas>
     </section>
     <!-- canvas <- -->
@@ -125,6 +169,7 @@
         </div>
     </section>
     <!-- info panel <- -->
+    <script src="./script/main.js"></script>
     <script src="./script/canvas.js"></script>
     <script src="./script/menu.js"></script>
     <script src="./script/toolbar.js"></script>

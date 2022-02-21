@@ -1,29 +1,3 @@
-let penSize = 1;
-
-let zoom = 10;
-let canvasX = 0;
-let canvasY = 0;
-
-let drawing = false;
-let bound;
-
-// image data
-let imageData = new ImageData(penSize, penSize);
-
-// colour 1
-let red1 = 0;
-let green1 = 0;
-let blue1 = 0;
-let alpha1 = 255;
-// colour 2
-let red2 = 255;
-let green2 = 255;
-let blue2 = 255;
-let alpha2 = 255;
-
-const canvas = document.querySelector('#canvas');
-let ctx = canvas.getContext("2d");
-
 // prevent context menu
 canvas.oncontextmenu = () => false;
 
@@ -63,7 +37,19 @@ function setBounds(){
     bound = canvas.getBoundingClientRect();
 }
 
+function canvasBackground(){
+    if(canvas.width % 2 == 0){
+        canvas.style.backgroundSize = canvas.width * zoom + 'px';
+    }
+    else{
+        canvas.style.backgroundSize = (canvas.width - 1) * zoom + 'px';
+    }
+    canvas.style.width = canvas.width * zoom + 'px';
+    canvas.style.height = canvas.height * zoom + 'px';
+}
+
 function start(){
+    if(tool > 1) return;
     drawing = true;
 }
 
@@ -74,11 +60,11 @@ function end(){
 function draw(event){
     // ? check performance, maybe not good
     setBounds();
-
     canvasX = parseInt((event.clientX - bound.left - canvas.clientLeft) / zoom);
     canvasY = parseInt((event.clientY - bound.top - canvas.clientTop) / zoom);
+    // check, else continue
+    if(!drawing) return;
 
-    // FIXME: better align the pen
     if(penSize % 2 == 0){
         canvasX -= penSize / 2;
         canvasY -= penSize / 2;
@@ -87,10 +73,49 @@ function draw(event){
         canvasX -= (penSize - 1) / 2;
         canvasY -= (penSize - 1) / 2;
     }
-    // check, else continue
-    if(!drawing) return;
-
     ctx.putImageData(imageData, canvasX, canvasY);
+}
+
+function pick(event){
+    // ? check performance, maybe not good
+    setBounds();
+    canvasX = parseInt((event.clientX - bound.left - canvas.clientLeft) / zoom);
+    canvasY = parseInt((event.clientY - bound.top - canvas.clientTop) / zoom);
+
+    pickColour = ctx.getImageData(canvasX, canvasY, 1, 1);
+    switch(event.button){
+        case 0:
+            for(let i = 0; i < pickColour.data.length; i+= 4){
+                red1 = pickColour.data[i + 0]; // R
+                green1 = pickColour.data[i + 1]; // G
+                blue1 = pickColour.data[i + 2]; // B
+                alpha1 = pickColour.data[i + 3]; // A
+            }
+            colour1.style.backgroundColor = `rgba(${red1}, ${green1}, ${blue1}, ${alpha1})`;
+            console.log(`rgba(${red1}, ${green1}, ${blue1}, ${alpha1})`);
+        break;
+        case 2:
+            for(let i = 0; i < pickColour.data.length; i+= 4){
+                red2 = pickColour.data[i + 0]; // R
+                green2 = pickColour.data[i + 1]; // G
+                blue2 = pickColour.data[i + 2]; // B
+                alpha2 = pickColour.data[i + 3]; // A
+            }
+            colour2.style.backgroundColor = `rgba(${red2}, ${green2}, ${blue2}, ${alpha2})`;
+            console.log(`rgba(${red2}, ${green2}, ${blue2}, ${alpha2})`);
+        break;
+    }
+}
+
+function saveCanvas(){
+    canvas.toBlob((blob) => {
+        const a = document.createElement('a');
+        document.body.append(a);
+        a.download = 'grouchy.png';
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        document.body.removeChild(a);
+    });
 }
 
 // window.addEventListener('load', setBounds);

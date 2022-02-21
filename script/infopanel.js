@@ -1,14 +1,18 @@
-const zoomValueI = document.querySelector('#zoom_value');
-const zoomPlus = document.querySelector('#zoom_plus');
-const zoomMinus = document.querySelector('#zoom_minus');
-
-const coordX = document.querySelector('#coord_x');
-const coordY = document.querySelector('#coord_y');
-
-const toolName = document.querySelector('#tool_name');
-const toolKey = document.querySelector('#tool_key');
-
-const saveButton = document.querySelector('#save');
+function canvasZoom(direction){
+    switch(direction){
+        case true:
+            if(zoom >= 100) return;
+            zoom += 10;
+        break;
+        case false:
+            if(zoom <= 10) return;
+            zoom -= 10;
+        break;
+    }
+    zoomValueI.innerText = zoom + '%';
+    canvasBackground();
+    setBounds();
+}
 
 canvas.addEventListener('mousedown', (event) => {
     switch(event.button){
@@ -19,13 +23,13 @@ canvas.addEventListener('mousedown', (event) => {
             break;
         // middle mouse button
         case 1:
-            toolKey.innerText = 'B';
-            toolName.innerText = 'Pen 2';
+            toolKey.innerText = 'E';
+            toolName.innerText = 'Eraser';
             break;
         // right mouse button
         case 2:
-            toolKey.innerText = 'E';
-            toolName.innerText = 'Eraser';
+            toolKey.innerText = 'B';
+            toolName.innerText = 'Pen 2';
             break;
     }
 });
@@ -48,32 +52,24 @@ canvas.addEventListener('mouseout', () => {
 })
 
 zoomPlus.addEventListener('click', () => {
-    if(zoom >= 100) return;
-    zoom += 10;
-    zoomValueI.innerText = zoom + '%';
-    canvas.style.width = canvas.width * zoom + 'px';
-    canvas.style.height = canvas.height * zoom + 'px';
-    setBounds();
+    canvasZoom(true);
 });
 
 zoomMinus.addEventListener('click', () => {
-    if(zoom <= 10) return;
-    zoom -= 10;
-    zoomValueI.innerText = zoom + '%';
-    canvas.style.width = canvas.width * zoom + 'px';
-    canvas.style.height = canvas.height * zoom + 'px';
-    setBounds();
+    canvasZoom(false);
+});
+
+document.addEventListener('keydown', (event) => {
+    switch(event.key.toLowerCase()){
+        case '+':
+            canvasZoom(true);
+        break;
+        case '-':
+            canvasZoom(false);
+        break;
+    }
 });
 
 saveButton.addEventListener('click', () =>{
-    canvas.toBlob((blob) => {
-        const a = document.createElement('a');
-        document.body.append(a);
-        a.download = 'grouchy.png';
-        a.href = URL.createObjectURL(blob);
-        a.click();
-        document.body.remove(a);
-        // reload page automatically
-        window.location.reload();
-    });
+    saveCanvas();
 });

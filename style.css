@@ -1,4 +1,11 @@
-@import url('http://fonts.cdnfonts.com/css/thegoodmonolith');
+/* @import url('http://fonts.cdnfonts.com/css/thegoodmonolith');
+ */
+@font-face {
+    font-family: 'TheGoodMonolith';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/TheGoodMonolith.woff') format('woff');
+}
 
 :root{
     --black: #000000;
@@ -13,12 +20,24 @@
     font-size: 16px;
     text-rendering: optimizeLegibility;
     cursor: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    -ms-user-drag: none;
+    /* user-drag: none; */
 }
 
 #custom_cursor{
     display: none;
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     pointer-events: none;
     width: 32px;
     height: 32px;
@@ -48,6 +67,7 @@ button, input{
     font-size: 16px;
     border: 0;
     cursor: none;
+    padding: 0;
 }
 
 body{
@@ -91,11 +111,55 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .top-button > p{
     padding-bottom: 6px;
 }
+
+.dropdown{
+    background-color: var(--grey2);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    gap: 4px;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+
+#file_dropdown{
+    width: 200px;
+    height: 180px;
+    background-image: url(./img/ui/menu_file_box.png);
+    background-size: 200px 180px;
+    display: none;
+}
+
+.dropdown-button{
+    /* background-color: red; */
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding: 0 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-button:hover{
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.dropdown-button-separator{
+    height: 1px;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    border-top: 2px dashed var(--purple);
+}
+
 
 .pen-size{
     width: 40px;
@@ -131,6 +195,7 @@ body{
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .canvas-menu{
@@ -197,7 +262,7 @@ body{
 
 .canvas-menu-orientation > div{
     width: 100%;
-    height: 125px;
+    height: 128px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -206,17 +271,21 @@ body{
 
 .canvas-menu-orientation > div button{
     background-color: var(--white);
-    border: 1px solid var(--black);
+    image-rendering: pixelated;
 }
 
 .canvas-menu-orientation > div button:nth-child(1){
     width: 100px;
-    height: 125px;
+    height: 128px;
+    background-image: url(./img/ui/canvas_vertical.png);
+    background-size: 100px 128px;
 }
 
 .canvas-menu-orientation > div button:nth-child(2){
-    width: 125px;
+    width: 128px;
     height: 100px;
+    background-image: url(./img/ui/canvas_horizontal.png);
+    background-size: 128px 100px;
 }
 
 .canvas-menu-background > div{
@@ -329,7 +398,7 @@ body{
     background-repeat: repeat;
     background-image: url(./img/canvas/canvasBackground.png);
     background-position: left top;
-    background-size: 160px;
+    /* background-size: 160px; */
     background-color: var(--white);
     border: 1px solid var(--black);
     image-rendering: pixelated;
