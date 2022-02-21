@@ -13,21 +13,20 @@ Link to [Grouchy](https://ionutrogojan.github.io/grouchy/) <--
 v0.1 - initial release;
 v0.1a - minor improvements;
 v0.1b - even more minor improvements;
-v0.1c - getting close to a major release;
-> v0.1d - few more to go;
+> v0.1c - getting close to a major release;
 
 ```
 
 ## Manual
 ```ini
-0. [ New ] = canvas setup;
+0. [ New / N ] = canvas setup;
 1. [ Input ] = pen size;
 2. [ Mouse 0 / Left Button / B ] = draw colour 1;
 3. [ Mouse 1 / Right Mouse / E ] = erase;
 4. [ Mouse 2 / Middle Button / B ] = draw colour 2;
-5. [ I ] = eyedropper;
+5. [ I / Mouse 0 + Alt ] = eyedropper;
 5. [ - / + ] = canvas zoom;
-6. [ Save ] = save image as png;
+6. [ Save / S ] = save image as png;
 ```
 
 ## Roadmap
@@ -56,7 +55,7 @@ v0.1b :
     4. Changed canvas background; - made it a little easier to see white pixels on the canvas.
 v0.1c :
     1. Complete Ui redesign; - looking good :) .
-    2. Added navigation menu; - in pregress.
+    2. Added navigation menu; - in progress.
     3. Added tools bar; - non functional, in progress.
     4. Canvas background set to checkboard by default; - functional but not perfect.
     5. Fixed switching between colours; - no more clicking twice to get the other colour.
@@ -67,6 +66,12 @@ v0.1d:
     3. Small Ui changes; - more pixelated to maintain emersion;
     4. Tool selection;  - click the icons in the left toolbar to select.
     5. Keyboard Shortcuts; - you can also use shortcuts to select tools.
+v0.1e:
+    1. All the tools work as intended; - or at least better than before.
+    2. Using shortcuts will overwrite the current selected tool, but will revert to it after the action has ended; - lets hope this doesn't break.
+    3. The menu has changed a little with the introduction of 'file'; - still a work in progress.
+    4. Saving a drawing will not clear the canvas anymore; - saved the day :) .
+    5. Added icon; - grouchy :[ .
 ```
 
 ## Known Issues
@@ -75,4 +80,7 @@ v0.1d:
 2. Pen size not acurrate to input; - fixed;
 3. Pen Overlap and Eraser some time creates new line; - fixed;
 4. Pen position to pixel position missalignment; - fixed;
+5. Canvas checkboard pattern does not align with pixels; - fixed;
+6. When zooming in, the canvas gets cut out at the top with no way to scroll the section back in view;
+7. Dropdown menus do not close on focus lost;
 ```
