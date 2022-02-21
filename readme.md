@@ -13,7 +13,9 @@ Link to [Grouchy](https://ionutrogojan.github.io/grouchy/) <--
 v0.1 - initial release;
 v0.1a - minor improvements;
 v0.1b - even more minor improvements;
-> v0.1c - getting close to a major release;
+v0.1c - getting close to a major release;
+v0.1d - we still have a little to go;
+> v0.1e - did I forget to update the project and released 2 updates at once?;
 
 ```
 
