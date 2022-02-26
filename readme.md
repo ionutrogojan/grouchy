@@ -15,7 +15,8 @@ v0.1a - minor improvements;
 v0.1b - even more minor improvements;
 v0.1c - getting close to a major release;
 v0.1d - we still have a little to go;
-> v0.1e - did I forget to update the project and released 2 updates at once?;
+v0.1e - did I forget to update the project and released 2 updates at once?;
+> v0.1f - this is the last release before v0.2;
 
 ```
 
@@ -29,18 +30,26 @@ v0.1d - we still have a little to go;
 5. [ I / Mouse 0 + Alt ] = eyedropper;
 5. [ - / + ] = canvas zoom;
 6. [ Save / S ] = save image as png;
+7. [(arrow-up / numpad-8), (arrow-right / numpad-6), (arrow-down / numpad-2), (arrow-left / numpad-4), (numpad-5)] = up, right, down, left, center;
 ```
 
 ## Roadmap
 ```ini
 v0.2 :
-    1. custom colour input; - in progress;
+    1. custom colour input; - pushed to next version;
     2. custom pen size; - done;
-    3. undo / redo;
-    4. save; - in progress;
+    3. undo / redo; - pushed to next version;
+    4. save; - done;
     5. tool icons; - done;
     6. canvas setup; - in progress;
-    7. swatch list; - in progress;
+    7. colour palette; - done;
+v0.3
+    1. custom colour input;
+    2. undo / redo;
+    3. open image;
+    4. resize , flip and scale the canvas;
+    5. custom colour palette list;
+    6. fullscreen toggle; -in progress;
 ```
 
 ## Release Notes
@@ -74,6 +83,10 @@ v0.1e:
     3. The menu has changed a little with the introduction of 'file'; - still a work in progress.
     4. Saving a drawing will not clear the canvas anymore; - saved the day :) .
     5. Added icon; - grouchy :[ .
+v0.1f:
+    1. Canvas controls; no more scrolling and cut off canvas sections.
+    2. Colour palettes; a small list of colour palettes to choose colour from.
+    3. Fullscreen; added the view dropdown and the option to toggle fullscreen.
 ```
 
 ## Known Issues
@@ -83,6 +96,7 @@ v0.1e:
 3. Pen Overlap and Eraser some time creates new line; - fixed;
 4. Pen position to pixel position missalignment; - fixed;
 5. Canvas checkboard pattern does not align with pixels; - fixed;
-6. When zooming in, the canvas gets cut out at the top with no way to scroll the section back in view;
+6. When zooming in, the canvas gets cut out at the top with no way to scroll the section back in view; - fixed;
 7. Dropdown menus do not close on focus lost;
+8. The fullscreen option in the menu does not work on exit;
 ```
