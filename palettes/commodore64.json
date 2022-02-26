@@ -1,0 +1,98 @@
+[
+    {
+        "red": 0,
+        "green": 0,
+        "blue": 0,
+        "alpha": 255
+    },
+    {
+        "red": 255,
+        "green": 255,
+        "blue": 255,
+        "alpha": 255
+    },
+    {
+        "red": 136,
+        "green": 0,
+        "blue": 0,
+        "alpha": 255
+    },
+    {
+        "red": 170,
+        "green": 255,
+        "blue": 238,
+        "alpha": 255
+    },
+    {
+        "red": 204,
+        "green": 68,
+        "blue": 204,
+        "alpha": 255
+    },
+    {
+        "red": 0,
+        "green": 204,
+        "blue": 85,
+        "alpha": 255
+    },
+    {
+        "red": 0,
+        "green": 0,
+        "blue": 170,
+        "alpha": 255
+    },
+    {
+        "red": 238,
+        "green": 238,
+        "blue": 119,
+        "alpha": 255
+    },
+    {
+        "red": 221,
+        "green": 136,
+        "blue": 85,
+        "alpha": 255
+    },
+    {
+        "red": 102,
+        "green": 68,
+        "blue": 0,
+        "alpha": 255
+    },
+    {
+        "red": 255,
+        "green": 119,
+        "blue": 119,
+        "alpha": 255
+    },
+    {
+        "red": 51,
+        "green": 51,
+        "blue": 51,
+        "alpha": 255
+    },
+    {
+        "red": 119,
+        "green": 119,
+        "blue": 119,
+        "alpha": 255
+    },
+    {
+        "red": 170,
+        "green": 255,
+        "blue": 102,
+        "alpha": 255
+    },
+    {
+        "red": 0,
+        "green": 136,
+        "blue": 255,
+        "alpha": 255
+    },
+    {
+        "red": 187,
+        "green": 187,
+        "blue": 187,
+        "alpha": 255
+    }
+]

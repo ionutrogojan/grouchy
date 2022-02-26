@@ -2,8 +2,10 @@
 function updateTool(tool){
     for(let i = 0; i < tools.length; i++){
         tools[i].style.backgroundImage = toolButtonImg[i];
+        tools[i].style.outline = 'none';
     }
-    tools[tool].style.backgroundImage = toolButtonActiveImg[tool];
+    tools[tool].style.backgroundImage = toolButtonImg[tool];
+    tools[tool].style.outline = '2px solid var(--gold)';
     customCursor.style.backgroundImage = cursorImg[tool];
 }
 
@@ -55,14 +57,14 @@ document.addEventListener('keydown', (event) => {
             updateTool(quickTool);
         break;
     }
-    console.log(quickKey);
+    // console.log(quickKey);
 });
 
 document.addEventListener('keyup', () => {
     quickKey = null;
     quickTool = null;
     updateTool(tool);
-    console.log(quickKey);
+    // console.log(quickKey);
 });
 
 // tool icon + action

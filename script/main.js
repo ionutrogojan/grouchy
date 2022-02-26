@@ -9,8 +9,14 @@ let canvasX = 0;
 let canvasY = 0;
 let drawing = false;
 let bound;
+let topCanvasControl = 0;
+let leftCanvasControl = 0;
+let controlStep = 10;
+let activePalette = [];
+let activeColourButtons = [];
     // image data
-let imageData = new ImageData(penSize, penSize);
+let imageData;
+let backgroundData;
 let pickColour;
     // colour 1
 let red1 = 0;
@@ -22,6 +28,9 @@ let red2 = 255;
 let green2 = 255;
 let blue2 = 255;
 let alpha2 = 255;
+    // setup
+let canvasOrientation = 0;
+let canvasColour = 0;
 // variables <--
 
 // canvas.js -->
@@ -39,11 +48,21 @@ const fileRecent = document.querySelector('#file_recent');
 const fileSave = document.querySelector('#file_save');
 const fileReload = document.querySelector('#file_reload');
     // new canvas
-const canvasMenu = document.querySelector('.canvas-menu');
 const canvasMenuWrapper = document.querySelector('#canvas_menu_wrapper');
-const createButton = document.querySelector('#create_canvas');
+const canvasMenu = document.querySelector('.canvas-menu');
 const canvasWidthI = document.querySelector('#canvas_width_input');
 const canvasHeightI = document.querySelector('#canvas_height_input');
+const verticalOrientation = document.querySelector('#vertical_orientation');
+const horizontalOrientation = document.querySelector('#horizontal_orientation');
+const transparentCanvas = document.querySelector('#transparent_canvas');
+const blackCanvas = document.querySelector('#black_canvas');
+const whiteCanvas = document.querySelector('#white_canvas');
+const createButton = document.querySelector('#create_canvas');
+    // view
+const viewButton = document.querySelector('#view_button');
+const viewDropdown = document.querySelector('#view_dropdown');
+const viewGuides = document.querySelector('#view_guides');
+const viewFullScreen = document.querySelector('#view_fullscreen');
     // pen
 const penSizeI = document.querySelector('#pen_size');
 // menu <--
@@ -73,16 +92,19 @@ const cursorImg = [
 // toolbar <--
 
 // colour.js -->
-const s1Colour = { red: 0, green: 0, blue: 0, alpha: 255 };
-const s2Colour = { red: 170, green: 170, blue: 170, alpha: 255 };
-const s3Colour = { red: 255, green: 255, blue: 255, alpha: 255 };
-const s4Colour = { red: 242, green: 166, blue: 13, alpha: 255 };
-const s1 = document.querySelector('#s1');
-const s2 = document.querySelector('#s2');
-const s3 = document.querySelector('#s3');
-const s4 = document.querySelector('#s4');
 const colour1 = document.querySelector('#colour1');
 const colour2 = document.querySelector('#colour2');
+const paletteButton = document.querySelector('#palette_button');
+const paletteDropdown = document.querySelector('#palette_dropdown');
+const colourList = document.querySelector('#colour_list');
+// palettes
+const paletteCommodore64 = document.querySelector('#palette_commodore64');
+const paletteGameboy = document.querySelector('#palette_gameboy');
+const paletteGrouchy = document.querySelector('#palette_grouchy');
+const palettePico8 = document.querySelector('#palette_pico8');
+const paletteSecam = document.querySelector('#palette_secam');
+const paletteSmpte = document.querySelector('#palette_smpte');
+const paletteZxspectrum = document.querySelector('#palette_zxspectrum');
 // colour.js <--
 
 // infopanel -->
@@ -95,3 +117,15 @@ const toolName = document.querySelector('#tool_name');
 const toolKey = document.querySelector('#tool_key');
 const saveButton = document.querySelector('#save');
 // infopanel <--
+
+// extra
+const favIcon = document.querySelector('link[rel = "shortcut icon"]')
+window.addEventListener('blur', () => {
+    document.title = 'unsaved progress';
+    favIcon.setAttribute('href', './img/symbols/grouchy2.png');
+});
+
+window.addEventListener('focus', () => {
+    document.title = 'Grouchy v0.1f';
+    favIcon.setAttribute('href', './img/symbols/grouchy.png');
+});

@@ -10,7 +10,7 @@ function canvasZoom(direction){
         break;
     }
     zoomValueI.innerText = zoom + '%';
-    canvasBackground();
+    canvasCheckboard();
     setBounds();
 }
 

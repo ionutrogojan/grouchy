@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/symbols/grouchy.png" type="image/png">
     <link rel="stylesheet" href="./style.css">
-    <title>Grouchy v0.1e</title>
+    <title>Grouchy v0.1f</title>
 </head>
 <body>
     <div id="custom_cursor"></div>
@@ -20,10 +20,10 @@
                     <p>New...</p><span>N</span>
                 </div>
                 <div class="dropdown-button-separator"></div>
-                <div id="file_open" class="dropdown-button">
+                <div id="file_open" class="dropdown-button inactive">
                     <p>Open...</p><span>O</span>
                 </div>
-                <div id="file_recent" class="dropdown-button">
+                <div id="file_recent" class="dropdown-button inactive">
                     <p>Open Recent</p><span>></span>
                 </div>
                 <div class="dropdown-button-separator"></div>
@@ -48,13 +48,21 @@
                 <p>Preferences</p>
             </section> -->
         </div>
-        <div class="top-button inactive">
+        <div class="top-button" id="view_button">
             <p>View</p>
             <!-- dropdown -->
-            <!-- <section class="dropdown">
-                <p>Guides</p>
-                <p>FullScreen</p>
-            </section> -->
+            <section class="dropdown" id="view_dropdown">
+                <div class="dropdown-button inactive" id="view_guides">
+                    <p>Guides</p><span>></span>
+                </div>
+                <!-- make this a sub menu -->
+                <!-- <div class="dropdown-button inactive">
+                    <p>Guides Settings</p><span> </span>
+                </div> -->
+                <div class="dropdown-button" id="view_fullscreen">
+                    <p>FullScreen</p><span>F11</span>
+                </div>
+            </section>
         </div>
         <div class="top-button inactive">
             <p>Help</p>
@@ -94,8 +102,8 @@
                         <span class="purple-text">-----</span>
                     </p>
                     <div>
-                        <button></button>
-                        <button></button>
+                        <button id="vertical_orientation"></button>
+                        <button id="horizontal_orientation"></button>
                     </div>
                 </section>
                 <section class="canvas-menu-background">
@@ -105,9 +113,9 @@
                         <span class="purple-text">-----</span>
                     </p>
                     <div>
-                        <button></button>
-                        <button></button>
-                        <button></button>
+                        <button id="transparent_canvas"></button>
+                        <button id="black_canvas"></button>
+                        <button id="white_canvas"></button>
                     </div>
                 </section>
                 <section class="canvas-menu-create">
@@ -132,15 +140,42 @@
     <!-- colour -> -->
     <section class="right-bar">
         <section>
+            <div class="spectrum"></div>
             <div class="pen-colour">
-                <button id="colour1"></button>
-                <button id="colour2"></button>
+                <button id="colour1" class="colour-button"></button>
+                <button id="colour2" class="colour-button"></button>
+                <button id="palette_button">
+                    <!-- dropdown -->
+                    <section id="palette_dropdown" class="palette-dropdown">
+                        <div id="palette_commodore64" class="palette-dropdown-button">
+                            <p>Commodore64</p>
+                        </div>
+                        <div id="palette_gameboy" class="palette-dropdown-button">
+                            <p>GameBoy</p>
+                        </div>
+                        <div id="palette_grouchy" class="palette-dropdown-button">
+                            <p>Grouchy</p>
+                        </div>
+                        <div id="palette_pico8" class="palette-dropdown-button">
+                            <p>Pico8</p>
+                        </div>
+                        <div id="palette_secam" class="palette-dropdown-button">
+                            <p>Secam</p>
+                        </div>
+                        <div id="palette_smpte" class="palette-dropdown-button">
+                            <p>Smpte</p>
+                        </div>
+                        <div id="palette_zxspectrum" class="palette-dropdown-button">
+                            <p>ZXSpectrum</p>
+                        </div>
+                    </section>
+                </button>
             </div>
-            <div class="swatch-list">
-                <button id="s1"></button>
-                <button id="s2"></button>
-                <button id="s3"></button>
-                <button id="s4"></button>
+            <div id="colour_list" class="colour-list">
+                <!-- buttons go here -->
+            </div>
+            <div class="layer-list">
+                <!-- layers go here -->
             </div>
         </section>
     </section>

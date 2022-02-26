@@ -1,5 +1,3 @@
-/* @import url('http://fonts.cdnfonts.com/css/thegoodmonolith');
- */
 @font-face {
     font-family: 'TheGoodMonolith';
     font-style: normal;
@@ -10,7 +8,7 @@
 :root{
     --black: #000000;
     --white: #ffffff;
-    --grey1: #8C96A0;
+    --grey1: #8c96a0;
     --grey2: #aaaaaa;
     --purple: #463c46;
     --gold: #f2a60d;
@@ -127,13 +125,20 @@ body{
     gap: 4px;
     image-rendering: pixelated;
     z-index: 1;
+    width: 200px;
 }
 
 #file_dropdown{
-    width: 200px;
     height: 180px;
     background-image: url(./img/ui/menu_file_box.png);
     background-size: 200px 180px;
+    display: none;
+}
+
+#view_dropdown{
+    /* height: ;
+    background-image: url();
+    background-size: ; */
     display: none;
 }
 
@@ -387,10 +392,12 @@ body{
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* position: relative; */
 }
 
 #canvas{
@@ -398,10 +405,11 @@ body{
     background-repeat: repeat;
     background-image: url(./img/canvas/canvasBackground.png);
     background-position: left top;
-    /* background-size: 160px; */
     background-color: var(--white);
     border: 1px solid var(--black);
     image-rendering: pixelated;
+    /* canvas controlls require this */
+    position: relative;
 }
 
 .right-bar{
@@ -422,46 +430,107 @@ body{
 .right-bar > section{
     width: 232px;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 232px;
+    grid-template-rows: 116px 32px auto 202px;
     align-items: center;
     gap: 4px;
+}
+
+.spectrum{
+    width: 100%;
+    height: 100%;
+    background-color: var(--purple);
 }
 
 .pen-colour{
-    width: 228px;
+    width: 100%;
     height: 32px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto 32px;
+    gap: 4px;
     align-items: center;
 }
 
-.pen-colour button{
+.colour-button{
     background-image: url(./img/ui/maincolourbox.png);
-    background-size: 112px 32px;
+    background-size: 96px 32px;
     image-rendering: pixelated;
-    width: 112px;
+    width: 100%;
     height: 32px;
 }
 
-.swatch-list{
-    background-color: var(--purple);
-    width: 222px;
-    height: auto;
-    height: 100%;
-    display: grid;
-    justify-content: flex-start;
-    grid-template-columns: repeat(6, 32px);
-    grid-row: auto;
-    gap: 4px;
-    padding: 4px;
+#palette_button{
+    background-image: url(./img/ui/pelette_button.png);
+    background-size: 32px;
+    background-color: var(--grey2);
+    image-rendering: pixelated;
+    width: 32px;
+    height: 32px;
+    position: relative;
 }
 
-.swatch-list button{
+.palette-dropdown{
+    background-image: url(./img/ui/colour_palette_box.png);
+    background-size: 200px 234px;
+    background-color: var(--grey2);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    height: 234px;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: flex-start;
+    align-items: baseline;
+    display: none;
+}
+
+.palette-dropdown-button{
+    width: calc(100% - 20px);
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.palette-dropdown-button:hover{
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.colour-list{
+    background-color: var(--purple);
+    width: 100%;
+    height: calc(100% - 16px);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, 32px);
+    grid-template-rows: repeat(auto-fill, 32px);
+    grid-row: auto;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.colour-list button{
     width: 32px;
     height: 32px;
     border: 1px solid var(--black);
+}
+
+.layer-list{
+    background-color: var(--purple);
+    width: 100%;
+    min-height: 202px;
+    display: grid;
+    justify-content: center;
+    align-items: baseline;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto-fill, 32px);
+    grid-row: auto;
+    gap: 2px;
 }
 
 .bottom-bar{

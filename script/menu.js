@@ -4,61 +4,73 @@ function setCanvasSize(){
     canvas.height = canvasHeightI.value;
     canvas.style.width = canvasWidthI.value * zoom + 'px';
     canvas.style.height = canvasHeightI.value * zoom + 'px';
-    canvasBackground();
+    canvasCheckboard();
+}
+
+function resetMenu(activeDropdown){
+    // hide all the dropdowns
+    fileDropdown.style.display = 'none';
+    // editDropdown.style.display = 'none';
+    viewDropdown.style.display = 'none';
+    // helpDropdown.style.display = 'none';
+    // show the active dropdown
+    activeDropdown.style.display = 'flex';
+}
+
+// FILE -->
+function checkOrientation(){
+    let sum = canvasWidthI.value - canvasHeightI.value;
+    if(sum > 0){
+        canvasOrientation = 1;
+        horizontalOrientation.style.outline = '2px solid var(--gold)';
+        verticalOrientation.style.outline = 'none';
+    }
+    else{
+        canvasOrientation = 0;
+        horizontalOrientation.style.outline = 'none';
+        verticalOrientation.style.outline = '2px solid var(--gold)';
+    }
+}
+function setOrientation(orientated){
+    if(orientated == canvasOrientation){
+        checkOrientation();
+    }
+    else{
+        let tempValue;
+        tempValue = canvasWidthI.value;
+        canvasWidthI.value = canvasHeightI.value;
+        canvasHeightI.value = tempValue;
+        checkOrientation();
+    }
 }
 
 function newFile(){
     canvasMenuWrapper.style.display = 'flex';
+    checkOrientation();
 }
 
-function resetMenu(){
-    fileDropdown.style.display = 'none';
-    // editDropdown.style.display = 'none';
-    // viewDropdown.style.display = 'none';
-    // helpDropdown.style.display = 'none';
-}
 fileButton.addEventListener('click', () => {
-    // resetMenu();
-    if(fileDropdown.style.display != 'flex'){
-        fileDropdown.style.display = 'flex';
-    }
-    else{
-        fileDropdown.style.display = 'none';
-    }
+    resetMenu(fileDropdown);
 });
 // new
 fileNew.addEventListener('click', (event) => {
-    // stop propagation
-    event.stopPropagation();
-    resetMenu();
     newFile();
 });
 // open
-fileNew.addEventListener('click', (event) => {
-    // stop propagation
-    event.stopPropagation();
-    fileDropdown.style.display = 'none';
-    canvasMenuWrapper.style.display = 'flex';
-});
+// fileNew.addEventListener('click', (event) => {
+
+// });
+
 // recent
-fileNew.addEventListener('click', (event) => {
-    // stop propagation
-    event.stopPropagation();
-    fileDropdown.style.display = 'none';
-    canvasMenuWrapper.style.display = 'flex';
-});
+// fileNew.addEventListener('click', () => {
+
+// });
 // save
-fileSave.addEventListener('click', (event) => {
-    // stop propagation
-    event.stopPropagation();
-    fileDropdown.style.display = 'none';
+fileSave.addEventListener('click', () => {
     saveCanvas();
 });
 // reload
-fileReload.addEventListener('click', (event) => {
-    // stop propagation
-    event.stopPropagation();
-    fileDropdown.style.display = 'none';
+fileReload.addEventListener('click', () => {
     window.location.reload();
 });
 // stop propagation
@@ -70,13 +82,88 @@ canvasMenuWrapper.addEventListener('click', () => {
     canvasMenuWrapper.style.display = 'none';
 });
 
-// create canvas
+// canvas setup
+    // orientation -->
+canvasWidthI.addEventListener('keyup', () => {
+    checkOrientation();
+});
+canvasHeightI.addEventListener('keyup', () => {
+    checkOrientation();
+});
+verticalOrientation.addEventListener('click', () => {
+    setOrientation(0);
+});
+horizontalOrientation.addEventListener('click', () => {
+    setOrientation(1);
+});
+    // orientation <--
+
+    // background -->
+transparentCanvas.addEventListener('click', () => {
+    canvasColour = 0;
+    transparentCanvas.style.outline = '2px solid var(--gold)';
+    blackCanvas.style.outline = 'none';
+    whiteCanvas.style.outline = 'none';
+});
+blackCanvas.addEventListener('click', () => {
+    canvasColour = 1;
+    transparentCanvas.style.outline = 'none';
+    blackCanvas.style.outline = '2px solid var(--gold)';
+    whiteCanvas.style.outline = 'none';
+});
+whiteCanvas.addEventListener('click', () => {
+    canvasColour = 2;
+    transparentCanvas.style.outline = 'none';
+    blackCanvas.style.outline = 'none';
+    whiteCanvas.style.outline = '2px solid var(--gold)';
+});
+    // background <--
+
+    // create canvas
 createButton.addEventListener('click', () => {
+    canvasBackground(canvasColour);
     setCanvasSize();
     canvasMenuWrapper.style.display = 'none';
 });
+// FILE <--
 
-window.addEventListener('load', setCanvasSize);
+// VIEW -->
+viewButton.addEventListener('click', () => {
+    resetMenu(viewDropdown);
+});
+// fullscreen
+viewFullScreen.addEventListener('click', () => {
+    const app = document.documentElement;
+    if(!app.fullscreenElement){
+        if(app.requestFullscreen){ // default
+            app.requestFullscreen();
+        }
+        else if(app.webkitRequestFullscreen){ // safari
+            app.webkitRequestFullscreen();
+        }
+        else if(app.msRequestFullscreen){ // explorer
+            app.msRequestFullscreen();
+        }
+        else if(app.mozRequestFullscreen){ // firefox
+            app.mozRequestFullscreen();
+        }
+    }
+    else{
+        if(document.exitFullscreen){ // default
+            document.exitFullscreen();
+        }
+        else if(document.webkitExitFullscreen){ // safari
+            document.webkitExitFullscreen();
+        }
+        else if(document.msExitFullscreen){ // explorer
+            document.msExitFullscreen();
+        }
+        else if(document.mozExitFullscreen){ // firefox
+            document.mozExitFullscreen();
+        }
+    }
+});
+// VIEW <--
 
 // update pen size
 penSizeI.addEventListener('keyup', () => {
@@ -94,6 +181,8 @@ canvas.addEventListener('mouseover', () => {
         penSize = penSizeI.value;
     }
 });
+
+window.addEventListener('load', setCanvasSize);
 // menu shortcuts
 document.addEventListener('keydown', (event) => {
     switch(event.key.toLocaleLowerCase()){
@@ -109,6 +198,22 @@ document.addEventListener('keydown', (event) => {
         case 'r':
             window.location.reload();
         break;
+        case 'arrowup':
+            canvasControl(0);
+        break;
+        case 'arrowright':
+            canvasControl(1);
+        break;
+        case 'arrowdown':
+            canvasControl(2);
+        break;
+        case 'arrowleft':
+            canvasControl(3);
+        break;
+        case 'clear':
+            canvasControl(4);
+        break;
     }
+    console.log(event.key.toLowerCase());
     // TODO: set each case to a function to call from both buttons and shortcuts
 });
