@@ -410,6 +410,7 @@ body{
     image-rendering: pixelated;
     /* canvas controlls require this */
     position: relative;
+    image-rendering: crisp-edges;
 }
 
 .right-bar{
