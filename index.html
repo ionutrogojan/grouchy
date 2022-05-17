@@ -6,134 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/symbols/grouchy.png" type="image/png">
     <link rel="stylesheet" href="./style.css">
-    <title>Grouchy v0.1f</title>
+    <script src="./main.js" type="module" defer></script>
+    <title>Grouchy v0.2a</title>
 </head>
 <body>
     <div id="custom_cursor"></div>
-    <!-- menu -> -->
-    <section class="top-bar">
-        <div class="top-button" id="file_button">
-            <p>File</p>
-            <!-- dropdown -->
-            <section id="file_dropdown" class="dropdown">
-                <div id="file_new" class="dropdown-button">
-                    <p>New...</p><span>N</span>
-                </div>
-                <div class="dropdown-button-separator"></div>
-                <div id="file_open" class="dropdown-button inactive">
-                    <p>Open...</p><span>O</span>
-                </div>
-                <div id="file_recent" class="dropdown-button inactive">
-                    <p>Open Recent</p><span>></span>
-                </div>
-                <div class="dropdown-button-separator"></div>
-                <div id="file_save" class="dropdown-button">
-                    <p>Save</p><span>S</span>
-                </div>
-                <div id="file_reload" class="dropdown-button">
-                    <p>Refresh</p><span>R</span>
-                </div>
-            </section>
+    <section class="top-bar" id="menu">
+        <!-- menu buttons -> -->
+        <div class="menu-button" data-dropdown-button><p>File</p>
+            <div class="menu-dropdown" data-dropdown="file">
+                <div data-dropdown-option="file_new"><p>New...</p><span>N</span></div>
+                    <span class="dropdown-separator"></span>
+                <div data-dropdown-option="file_open"><p>Open...</p><span>O</span></div>
+                <div data-dropdown-option="file_recent"><p>Open Recent</p><span>></span></div>
+                    <span class="dropdown-separator"></span>
+                <div data-dropdown-option="file_save"><p>Save</p><span>S</span></div>
+                <div data-dropdown-option="file_reload"><p>Refresh</p><span>R</span></div>
+            </div>
         </div>
-        <div class="top-button inactive">
-            <p>Edit</p>
-            <!-- dropdown -->
-            <!-- <section class="dropdown">
-                <p>Undo</p>
-                <p>Redo</p>
-                <p>Cut</p>
-                <p>Copy</p>
-                <p>Paste</p>
-                <p>Delete</p>
-                <p>Preferences</p>
-            </section> -->
+        <div class="menu-button" data-dropdown-button><p>Edit</p>
+            <div class="menu-dropdown" data-dropdown="edit">
+                <div data-dropdown-button="edit_undo"><p>Undo</p><span>Z</span></div>
+                <div data-dropdown-button="edit_redo"><p>Redo</p><span>Y</span></div>
+                <div data-dropdown-button="edit_cut"><p>Cut</p><span>X</span></div>
+                <div data-dropdown-button="edit_copy"><p>Copy</p><span>C</span></div>
+                <div data-dropdown-button="edit_paste"><p>Paste</p><span>V</span></div>
+                <div data-dropdown-button="edit_delete"><p>Delete</p><span>DEL</span></div>
+                <div data-dropdown-button="edit_preferences"><p>Preferences...</p><span>&nbsp;</span></div>
+            </div>
         </div>
-        <div class="top-button" id="view_button">
-            <p>View</p>
-            <!-- dropdown -->
-            <section class="dropdown" id="view_dropdown">
-                <div class="dropdown-button inactive" id="view_guides">
-                    <p>Guides</p><span>></span>
-                </div>
-                <!-- make this a sub menu -->
-                <!-- <div class="dropdown-button inactive">
-                    <p>Guides Settings</p><span> </span>
-                </div> -->
-                <div class="dropdown-button" id="view_fullscreen">
-                    <p>FullScreen</p><span>F11</span>
-                </div>
-            </section>
+        <div class="menu-button" data-dropdown-button><p>View</p>
+            <div class="menu-dropdown" data-dropdown="view">
+                <div data-dropdown-button="view_guides"><p>Guides</p><span>></span></div>
+                <div data-dropdown-button="view_fullscreen"><p>FullScreen</p><span>F11</span></div>
+            </div>
         </div>
-        <div class="top-button inactive">
-            <p>Help</p>
-            <!-- <section class="dropdown">
-                <p>Documentation</p>
-                <p>Release Notes</p>
-                <p>About</p>
-            </section> -->
+        <div class="menu-button" data-dropdown-button><p>Help</p>
+            <div class="menu-dropdown" data-dropdown="help">
+                <div data-dropdown-button="help_documentation"><p>Documentation</p><span>&nbsp;</span></div>
+                <div data-dropdown-button="help_notes"><p>Release Notes</p><span>&nbsp;</span></div>
+                <div data-dropdown-button="help_about"><p>About</p><span>&nbsp;</span></div>
+            </div>
         </div>
+        <!-- <- menu buttons -->
         <div class="pen-size">
             <input type="text" placeholder="1 px" value="1" id="pen_size">
         </div>
-        <section id="canvas_menu_wrapper">
+        <!-- new canvas -> -->
+        <section class="canvas-menu-wrapper">
             <section class="canvas-menu">
                 <p class="canvas-menu-header">New Canvas</p>
-                <section class="canvas-menu-size">
-                    <p>
-                        <span class="purple-text">-</span>
-                        Size
-                        <span class="purple-text">-----</span>
-                    </p>
-                    <section>
-                        <div>
+                    <p><span class="purple-text">-</span>Size<span class="purple-text">-----</span></p>
+                        <div class="canvas-menu-size">
                             <label for="width-input" class="purple-text">&numsp;Width</label>
                             <input type="text" maxlength="3" name="width-input" id="canvas_width_input" value="16">
                         </div>
-                        <div>
+                        <div class="canvas-menu-size">
                             <label for="height-input" class="purple-text">Height</label>
                             <input type="text" maxlength="3" name="height-input" id="canvas_height_input" value="16">
                         </div>
-                    </section>
-                </section>
-                <section class="canvas-menu-orientation">
-                    <p>
-                        <span class="purple-text">-</span>
-                        Orientation
-                        <span class="purple-text">-----</span>
-                    </p>
-                    <div>
-                        <button id="vertical_orientation"></button>
-                        <button id="horizontal_orientation"></button>
-                    </div>
-                </section>
-                <section class="canvas-menu-background">
-                    <p>
-                        <span class="purple-text">-</span>
-                        Background
-                        <span class="purple-text">-----</span>
-                    </p>
-                    <div>
-                        <button id="transparent_canvas"></button>
-                        <button id="black_canvas"></button>
-                        <button id="white_canvas"></button>
-                    </div>
-                </section>
-                <section class="canvas-menu-create">
-                    <button id="create_canvas">Create</button>
-                </section>
+                    <p><span class="purple-text">-</span>Orientation<span class="purple-text">-----</span></p>
+                        <div class="canvas-menu-orientation">
+                            <div id="vertical_orientation"></div>
+                            <div id="horizontal_orientation"></div>
+                        </div>
+                    <p><span class="purple-text">-</span>Background<span class="purple-text">-----</span></p>
+                        <div class="canvas-menu-colour">
+                            <div id="transparent_canvas"></div>
+                            <div id="black_canvas"></div>
+                            <div id="white_canvas"></div>
+                        </div>
+                <div id="create_canvas"><p>Create</p></div>
             </section>
         </section>
+        <!-- <- new canvas -->
     </section>
     <!-- menu <- -->
     <!-- toolbar -> -->
     <section class="left-bar">
-        <button id="pen_button" class="left-button"></button>
-        <button id="eraser_button" class="left-button"></button>
-        <button id="eyedropper_button" class="left-button"></button>
+        <button class="left-button" id="pen_button"></button>
+        <button class="left-button" id="eraser_button"></button>
+        <button class="left-button" id="eyedropper_button"></button>
     </section>
     <!-- toolbar <- -->
     <!-- canvas -> -->
-    <section id="canvas_area" class="canvas-area">
+    <section class="canvas-area" id="canvas_area">
         <canvas id="canvas"></canvas>
     </section>
     <!-- canvas <- -->
@@ -142,36 +99,36 @@
         <section>
             <div class="spectrum"></div>
             <div class="pen-colour">
-                <button id="colour1" class="colour-button"></button>
-                <button id="colour2" class="colour-button"></button>
+                <button class="colour-button" id="colour1"></button>
+                <button class="colour-button" id="colour2"></button>
                 <button id="palette_button">
                     <!-- dropdown -->
-                    <section id="palette_dropdown" class="palette-dropdown">
-                        <div id="palette_commodore64" class="palette-dropdown-button">
+                    <section class="palette-dropdown" id="palette_dropdown">
+                        <div class="palette-dropdown-button" id="palette_commodore64">
                             <p>Commodore64</p>
                         </div>
-                        <div id="palette_gameboy" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_gameboy">
                             <p>GameBoy</p>
                         </div>
-                        <div id="palette_grouchy" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_grouchy">
                             <p>Grouchy</p>
                         </div>
-                        <div id="palette_pico8" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_pico8">
                             <p>Pico8</p>
                         </div>
-                        <div id="palette_secam" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_secam">
                             <p>Secam</p>
                         </div>
-                        <div id="palette_smpte" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_smpte">
                             <p>Smpte</p>
                         </div>
-                        <div id="palette_zxspectrum" class="palette-dropdown-button">
+                        <div class="palette-dropdown-button" id="palette_zxspectrum">
                             <p>ZXSpectrum</p>
                         </div>
                     </section>
                 </button>
             </div>
-            <div id="colour_list" class="colour-list">
+            <div class="colour-list" id="colour_list">
                 <!-- buttons go here -->
             </div>
             <div class="layer-list">
@@ -204,11 +161,11 @@
         </div>
     </section>
     <!-- info panel <- -->
-    <script src="./script/main.js"></script>
+    <!-- <script src="./script/main.js"></script>
     <script src="./script/canvas.js"></script>
     <script src="./script/menu.js"></script>
     <script src="./script/toolbar.js"></script>
     <script src="./script/colour.js"></script>
-    <script src="./script/infopanel.js"></script>
+    <script src="./script/infopanel.js"></script> -->
 </body>
 </html>

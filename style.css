@@ -1,3 +1,5 @@
+@import './css/newCanvas.css';
+
 @font-face {
     font-family: 'TheGoodMonolith';
     font-style: normal;
@@ -17,7 +19,7 @@
     font-weight: bold;
     font-size: 16px;
     text-rendering: optimizeLegibility;
-    cursor: none;
+    /* cursor: none; */
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -30,6 +32,10 @@
     -o-user-drag: none;
     -ms-user-drag: none;
     /* user-drag: none; */
+}
+
+p {
+    margin: 0;
 }
 
 #custom_cursor{
@@ -98,51 +104,66 @@ body{
     gap: 4px;
 }
 
-.top-button{
-    background-image: url(./img/ui/buttonbox.png);
+.menu-button{
+    background-color: var(--white);
+    background-image: url("./img/ui/buttonbox.png");
     background-size: 80px 30px;
     image-rendering: pixelated;
-    height: 30px;
     width: 80px;
-    background-color: var(--white);
-    text-align: center;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.top-button > p{
+.menu-button > p{
     padding-bottom: 6px;
+    pointer-events: none;
 }
 
-.dropdown{
+.menu-dropdown {
     background-color: var(--grey2);
+    image-rendering: pixelated;
     position: absolute;
     top: 100%;
     left: 0;
+    width: 200px;
     flex-direction: column;
     gap: 4px;
-    image-rendering: pixelated;
     z-index: 1;
-    width: 200px;
+    display: none;
 }
 
-#file_dropdown{
+[data-dropdown].active {
+    display: flex;
+}
+
+[data-dropdown = "file"] {
     height: 180px;
     background-image: url(./img/ui/menu_file_box.png);
     background-size: 200px 180px;
-    display: none;
 }
 
-#view_dropdown{
-    /* height: ;
+/* [data-dropdown = "edit"] {
+    height: ;
     background-image: url();
-    background-size: ; */
-    display: none;
+    background-size: ;
 }
 
-.dropdown-button{
+[data-dropdown = "view"] {
+    height: ;
+    background-image: url();
+    background-size: ;
+}
+
+[data-dropdown = "help"] {
+    height: ;
+    background-image: url();
+    background-size: ;
+} */
+
+[data-dropdown-option] {
     /* background-color: red; */
     width: calc(100% - 20px);
     margin: 0 auto;
@@ -153,12 +174,16 @@ body{
     justify-content: space-between;
 }
 
-.dropdown-button:hover{
+[data-dropdown-option]:hover {
     background-color: var(--purple);
     color: var(--white);
 }
 
-.dropdown-button-separator{
+[data-dropdown-option] > p {
+    pointer-events: none;
+}
+
+.dropdown-separator {
     height: 1px;
     width: calc(100% - 20px);
     margin: 0 auto;
@@ -166,7 +191,7 @@ body{
 }
 
 
-.pen-size{
+.pen-size {
     width: 40px;
     height: 30px;
     display: flex;
@@ -178,7 +203,7 @@ body{
     background-position: left top;
 }
 
-.pen-size > input{
+.pen-size > input {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -187,160 +212,6 @@ body{
     border: 0;
     text-align: center;
     font-size: 16px;
-    font-weight: bold;
-}
-
-#canvas_menu_wrapper{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
-.canvas-menu{
-    background-color: var(--grey1);
-    border: 1px solid var(--white);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 10px;
-    width: 272px;
-    height: auto;
-    z-index: 1;
-}
-
-.canvas-menu-header{
-    width: calc(100% - 20px);
-    height: 30px;
-    background-color: var(--purple);
-    margin: 0;
-    color: var(--white);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 10px;
-}
-
-.canvas-menu-size, .canvas-menu-orientation, .canvas-menu-background{
-    width: calc(100% - 20px);
-    margin: 0 auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 4px;
-}
-
-.canvas-menu-size > p, .canvas-menu-orientation > p, .canvas-menu-background > p{
-    width: calc(100% - 20px);
-    height: 20px;
-    margin: 0;
-    padding: 0 10px;
-}
-
-.canvas-menu-size > section{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-}
-
-.canvas-menu-size > section input{
-    background-image: url(./img/ui/canvasinputbox.png);
-    background-size: 80px 20px;
-    image-rendering: pixelated;
-    width: 80px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0;
-}
-
-.canvas-menu-orientation > div{
-    width: 100%;
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.canvas-menu-orientation > div button{
-    background-color: var(--white);
-    image-rendering: pixelated;
-}
-
-.canvas-menu-orientation > div button:nth-child(1){
-    width: 100px;
-    height: 128px;
-    background-image: url(./img/ui/canvas_vertical.png);
-    background-size: 100px 128px;
-}
-
-.canvas-menu-orientation > div button:nth-child(2){
-    width: 128px;
-    height: 100px;
-    background-image: url(./img/ui/canvas_horizontal.png);
-    background-size: 128px 100px;
-}
-
-.canvas-menu-background > div{
-    width: 100%;
-    height: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.canvas-menu-background > div button{
-    width: 64px;
-    height: 64px;
-    background-color: var(--white);
-    border: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: 64px;
-    image-rendering: pixelated;
-}
-
-.canvas-menu-background > div button:nth-child(1){
-    background-image: url(./img/canvas/canvasmenutransparent.png);
-}
-
-.canvas-menu-background > div button:nth-child(2){
-    background-image: url(./img/canvas/canvasmenublack.png);
-}
-
-.canvas-menu-background > div button:nth-child(3){
-    background-image: url(./img/canvas/canvasmenuwhite.png);
-}
-
-.canvas-menu-create{
-    width: calc(100% - 20px);
-    height: 30px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 10px;
-}
-
-.canvas-menu-create > button{
-    background-color: var(--purple);
-    color: var(--white);
-    width: 80px;
-    height: 30px;
     font-weight: bold;
 }
 
