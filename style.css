@@ -15,9 +15,15 @@
     --purple: #463c46;
     --gold: #f2a60d;
     font-family: 'TheGoodMonolith', sans-serif, monospace;
-    color: var(--black);
     font-weight: bold;
     font-size: 16px;
+    
+    /* not standard, avoid -> */
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+    /* not standard, avoid <- */
+
+    color: var(--black);
     text-rendering: optimizeLegibility;
     /* cursor: none; */
     -webkit-user-select: none;
@@ -70,8 +76,8 @@ button, input{
     font-weight: bold;
     font-size: 16px;
     border: 0;
-    cursor: none;
     padding: 0;
+    /* cursor: none; */
 }
 
 body{
@@ -214,6 +220,8 @@ body{
     font-size: 16px;
     font-weight: bold;
 }
+
+/* TODO: clean from here downwards --> */
 
 .left-bar{
     min-width: 48px;

@@ -1,4 +1,5 @@
 import { canvas } from "./canvas.js";
+import { setState, canvasModal } from "./canvasModal.js";
 
 const resetDropdowns = (currentDropdown) => {
     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
@@ -26,7 +27,7 @@ document.addEventListener("click", (e) => {
     const isMenuButton = e.target.matches("[data-dropdown-button]");
     let currentDropdown;
     if (isMenuButton) {
-        console.log("click");
+        // console.log("click");
         currentDropdown = e.target.querySelector("[data-dropdown]");
         currentDropdown.classList.toggle("active");
     }
@@ -35,10 +36,10 @@ document.addEventListener("click", (e) => {
     if (isMenuOption) {
         let currentOption;
         currentOption = e.target.getAttribute("data-dropdown-option");
-        console.log(`option ${currentOption} fired!`);
+        // console.log(`option ${currentOption} fired!`);
         switch (currentOption) {
             case "file_new":
-
+                setState(canvasModal, true);
             break;
             case "file_open":
 
@@ -90,6 +91,5 @@ document.addEventListener("click", (e) => {
             break;
         }
     }
-
     resetDropdowns(currentDropdown);
 });

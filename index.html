@@ -53,30 +53,30 @@
             <input type="text" placeholder="1 px" value="1" id="pen_size">
         </div>
         <!-- new canvas -> -->
-        <section class="canvas-menu-wrapper">
+        <section class="canvas-menu-wrapper" data-canvas-wrapper>
             <section class="canvas-menu">
                 <p class="canvas-menu-header">New Canvas</p>
                     <p><span class="purple-text">-</span>Size<span class="purple-text">-----</span></p>
                         <div class="canvas-menu-size">
                             <label for="width-input" class="purple-text">&numsp;Width</label>
-                            <input type="text" maxlength="3" name="width-input" id="canvas_width_input" value="16">
+                            <input data-canvas-size="width" type="text" maxlength="3" name="width-input" value="16">
                         </div>
                         <div class="canvas-menu-size">
                             <label for="height-input" class="purple-text">Height</label>
-                            <input type="text" maxlength="3" name="height-input" id="canvas_height_input" value="16">
+                            <input data-canvas-size="height" type="text" maxlength="3" name="height-input" value="16">
                         </div>
                     <p><span class="purple-text">-</span>Orientation<span class="purple-text">-----</span></p>
                         <div class="canvas-menu-orientation">
-                            <div id="vertical_orientation"></div>
-                            <div id="horizontal_orientation"></div>
+                            <div data-canvas-orientation="vertical"></div>
+                            <div data-canvas-orientation="horizontal"></div>
                         </div>
                     <p><span class="purple-text">-</span>Background<span class="purple-text">-----</span></p>
                         <div class="canvas-menu-colour">
-                            <div id="transparent_canvas"></div>
-                            <div id="black_canvas"></div>
-                            <div id="white_canvas"></div>
+                            <div data-canvas-background="transparent"></div>
+                            <div data-canvas-background="black"></div>
+                            <div data-canvas-background="white"></div>
                         </div>
-                <div id="create_canvas"><p>Create</p></div>
+                <div data-canvas-create><p>Create</p></div>
             </section>
         </section>
         <!-- <- new canvas -->
