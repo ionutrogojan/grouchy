@@ -19,11 +19,11 @@ Link to 😠[Grouchy](https://ionutrogojan.github.io/grouchy/)'s playground <--
 
 ## 🖨️ Version 🖨️
 ```ini
-v0.2a - re-writing it;
-> v0.2a1 - menu updated;
+v0.2.0 - re-writing it;
+> v0.2.1 - menu updated;
 
 Version naming scheme:
-    v - 0.0 - a - 0;
+    v - 0 - 0 - 0;
     version - major - minor - development;
 ```
 <br>
