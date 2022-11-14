@@ -1,3 +1,9 @@
+# ⚠️ IMPORTANT ⚠️
+The project has migrated [here](https://github.com/ionutrogojan/puma_pixel) <--
+
+This repo will not receive any more updates. Please follow the new repo for updates!
+
+---
 # Grouchy
 
 ## Description
